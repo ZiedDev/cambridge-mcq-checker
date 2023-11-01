@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./logic.js" defer></script>
+    <title>Cambridge MCQ Checker</title>
+</head>
+
+<body>
+    <header class="header-banner">
+        <div class="header-banner-Title">
+            <a href="." class="remove-link-stuff">
+                <h1>Cambridge IGCSE MCQ Checker</h1>
+            </a>
+        </div>
+        <div class="header-banner-Content">
+            <a href="." class="remove-link-stuff">
+                <h3>Subjects</h3>
+            </a>
+
+            <a href="." class="remove-link-stuff">
+                <h3>Donate &lt;3</h3>
+            </a>
+        </div>
+    </header>
+
+    <section class="subject" id="subject-selection-menu">
+        <h2>Select a subject. <span class="coming-soon"> (more coming soon)</span>
+        </h2>
+        <div class="subject-selections selections">
+            <div class="card" id="biology" onclick="selectSubject('Biology')">
+                <div class="img-container">
+                    <img src="./media/images/Biology.jpg" alt="Biology img">
+                </div>
+                <h2>Biology</h2>
+            </div>
+            <div class="card" id="chemistry" onclick="selectSubject('Chemistry')">
+                <div class="img-container">
+                    <img src="./media/images/Chemistry.jpg" alt="Biology img">
+                </div>
+                <h2>Chemistry</h2>
+            </div>
+            <div class="card" id="physics" onclick="selectSubject('Physics')">
+                <div class="img-container">
+                    <img src="./media/images/Physics.jpg" alt="Biology img">
+                </div>
+                <h2>Physics</h2>
+            </div>
+            <div class="card" id="combinedScience" onclick="selectSubject('Combined')">
+                <div class="img-container">
+                    <img src="./media/images/Combined Science.png" alt="Biology img">
+                </div>
+                <h2>Combined Science</h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="year hidden" id="year-selection-menu">
+        <h2>Select a year.</h2>
+        <div class="year-selections selections">
+            <div class="card" id="2017" onclick="selectYear('2017')">
+                <div class="img-container">
+                    <img src="./media/images/Random/1.jpg">
+                </div>
+                <h2>2017</h2>
+            </div>
+            <div class="card" id="2018" onclick="selectYear('2018')">
+                <div class="img-container">
+                    <img src="./media/images/Random/2.jpg">
+                </div>
+                <h2>2018</h2>
+            </div>
+            <div class="card" id="2019" onclick="selectYear('2019')">
+                <div class="img-container">
+                    <img src="./media/images/Random/3.jpg">
+                </div>
+                <h2>2019</h2>
+            </div>
+            <div class="card" id="2020" onclick="selectYear('2020')">
+                <div class="img-container">
+                    <img src="./media/images/Random/4.jpg">
+                </div>
+                <h2>2020</h2>
+            </div>
+            <div class="card" id="2021" onclick="selectYear('2021')">
+                <div class="img-container">
+                    <img src="./media/images/Random/5.jpg">
+                </div>
+                <h2>2021</h2>
+            </div>
+            <div class="card" id="2022" onclick="selectYear('2022')">
+                <div class="img-container">
+                    <img src="./media/images/Random/6.jpg">
+                </div>
+                <h2>2022</h2>
+            </div>
+            <div class="card" id="2023" onclick="selectYear('2023')">
+                <div class="img-container">
+                    <img src="./media/images/Random/7.jpg">
+                </div>
+                <h2>2023</h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="session hidden" id="session-selection-menu">
+        <h2>Select a session.</h2>
+        <div class="session-selections selections">
+            <div class="card" id="m" onclick="selectSession('m')">
+                <div class="img-container">
+                    <img src="./media/images/Random/3.jpg">
+                </div>
+                <h2>February - March</h2>
+            </div>
+            <div class="card" id="s" onclick="selectSession('s')">
+                <div class="img-container">
+                    <img src="./media/images/Random/7.jpg">
+                </div>
+                <h2>May - June</h2>
+            </div>
+            <div class="card" id="w" onclick="selectSession('w')">
+                <div class="img-container">
+                    <img src="./media/images/Random/2.jpg">
+                </div>
+                <h2>October - November</h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="variant hidden" id="variant-selection-menu">
+        <h2>Select a variant.</h2>
+        <div class="variant-selections selections">
+            <div class="card" id="1" onclick="variantSession(1)">
+                <div class="img-container">
+                    <img src="./media/images/Random/1.jpg">
+                </div>
+                <h2>1</h2>
+            </div>
+            <div class="card" id="s" onclick="variantSession(2)">
+                <div class="img-container">
+                    <img src="./media/images/Random/5.jpg">
+                </div>
+                <h2>2</h2>
+            </div>
+            <div class="card" id="w" onclick="variantSession(3)">
+                <div class="img-container">
+                    <img src="./media/images/Random/4.jpg">
+                </div>
+                <h2>3</h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="solving hidden" id="solving-menu">
+        <h2> Alright everything is set. Now start solving
+            <span class="coming-soon">(or if you did solve it before just
+                put the answers to check them)</span>
+        </h2>
+
+        <div class="answer-sheet" id="answer-sheet">
+            <!-- Created in Javascript cuz this is too much -->
+        </div>
+
+        <div class="answer-text-box-container">
+            <h2 class="answer-text-box-label" for="name">Use text-box instead of the grid</h2>
+
+            <input type="checkbox" id="scroll_toggle" class="toggle" onclick="switchBoxes()">
+            <label for="scroll_toggle" class="slide_animation" style="animation-duration:1.5s;"></label>
+        </div>
+
+        <div class="answer-text-box-container">
+            <h2 class="answer-text-box-label" for="answer-text-box">Or you can write here the answers in the form
+                "ABC..."</h2>
+            <input class="answer-text-box" type="text" id="answer-text-box" name="answer-text-box" size="40" />
+        </div>
+
+        <div class="submit-button" id="submit-button" onclick="submitButton()">
+            <h1>Submit</h1>
+        </div>
+
+        <div class="result-section" id="submit-button">
+            <h1 class="result-counter" id="result-counter"> check your performance here after submitting</h1>
+        </div>
+
+    </section>
+
+    <!-- <footer>
+        <h3>© Zied</h3>
+    </footer> -->
+
+</body>
+
+</html>
