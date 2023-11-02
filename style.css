@@ -37,6 +37,16 @@ body {
     background-color: #0D1117;
 }
 
+footer {
+    height: 7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    border-top: #21262D solid 0.5pt;
+    background-color: #010409;
+}
+
 .coming-soon {
     font-size: 14pt;
     color: #5E656E;
@@ -51,7 +61,22 @@ body {
     text-decoration: 2pt #E6EDF3 underline;
 }
 
+a {
+    text-decoration: none;
+    color: #76a6d0;
+}
+
+a:hover {
+    text-decoration: 2pt #93b8d9 underline;
+}
+
+
 .hidden {
+    display: none;
+}
+
+
+.hamburger-menu {
     display: none;
 }
 
@@ -298,6 +323,10 @@ body {
     border-radius: 0.5rem;
 }
 
+.solving>.hidden {
+    display: none;
+}
+
 input[type="checkbox"].toggle+label {
     /*visible label*/
     font-size: 0.75em;
@@ -347,4 +376,175 @@ input[type="checkbox"].toggle+label::after {
 input[type="checkbox"].toggle:checked+label::after {
     transform: translateX(1.5rem);
     background-color: #30b54b;
+}
+
+.scroll_toggle-container {
+    display: flex;
+    margin: 2rem 0 2rem 0;
+}
+
+
+@media only screen and (max-width: 1440px) {
+    .subject>.selections {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        justify-items: center;
+    }
+
+    .selections>.card {
+        height: 17.5rem;
+        width: 17.5rem;
+    }
+
+    .year>.selections>.card,
+    .session>.selections>.card,
+    .variant>.selections>.card,
+    .solving>.selections>.card {
+        height: 10rem;
+        width: 40rem;
+    }
+
+    .answer-text-box-container {
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .answer-text-box-container>h2 {
+        text-align: center;
+    }
+
+    .answer-text-box {
+        align-self: center;
+        width: 60dvw;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .subject>.selections {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        gap: 2rem;
+        justify-items: center;
+    }
+
+    .selections>.card {
+        height: 10rem;
+        width: 40rem;
+    }
+
+    .year>.selections>.card,
+    .session>.selections>.card,
+    .variant>.selections>.card,
+    .solving>.selections>.card {
+        height: 10rem;
+        width: 80dvw;
+    }
+
+    .scroll_toggle-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .subject>.selections {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        gap: 2rem;
+        justify-items: center;
+    }
+
+    .selections>.card {
+        height: 10rem;
+        width: 80dvw;
+    }
+
+    .year>.selections>.card,
+    .session>.selections>.card,
+    .variant>.selections>.card,
+    .solving>.selections>.card {
+        height: 10rem;
+        width: 80dvw;
+    }
+
+    .answer-text-box-container {
+        flex-direction: column;
+    }
+
+    .answer-text-box {
+        align-self: center;
+    }
+
+    .header-banner {
+        position: relative;
+    }
+
+    .header-banner>.header-banner-Content {
+        position: absolute;
+        padding-right: 0;
+        flex-direction: column;
+        right: 0;
+        top: -100%;
+        z-index: -1;
+        background-color: rgba(1, 4, 9, 0.5);
+    }
+
+    .header-banner>.header-banner-Content>a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hamburger-menu {
+        display: flex;
+        align-self: center;
+    }
+
+    .header-banner>.show-hamburger-menu {
+        display: flex;
+        transform: translateY(100%);
+        background-color: rgba(1, 4, 9, 0.5);
+    }
+
+    .header-banner>.show-hamburger-menu>a {
+        color: rgba(230, 237, 243, 1);
+    }
+
+    @keyframes openMenu {
+        0% {
+            transform: translateY(0%);
+            z-index: -10;
+        }
+
+        100% {
+            transform: translateY(200%);
+            z-index: 1;
+        }
+    }
+
+    @keyframes closeMenu {
+        from {
+            transform: translateY(200%);
+            z-index: 0;
+        }
+
+        to {
+            transform: translateY(0%);
+            z-index: -10;
+        }
+    }
+}
+
+.credit-main {
+    width: 90%;
+    margin: auto;
+
+    text-align: center;
+}
+
+
+.credit-main>h1 {
+    margin-top: 5rem;
 }

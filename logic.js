@@ -188,14 +188,42 @@ function wrongOption(correctOption = "", questionNum) {
 const answerTextBox = document.getElementById("answer-text-box");
 const answerCheckBox = document.getElementById("scroll_toggle");
 
+const answerTextBoxMenu = document.getElementById("answer-text-box-menu");
+
 let isAnswerCheckBoxChecked = false;
 
 function switchBoxes() {
     if (isAnswerCheckBoxChecked) {
         isAnswerCheckBoxChecked = false;
+        answerTextBoxMenu.classList.add("hidden");
+        answerSheet.classList.remove("hidden");
     } else {
         isAnswerCheckBoxChecked = true;
+        answerTextBoxMenu.classList.remove("hidden");
+        answerSheet.classList.add("hidden");
     }
+}
 
-    console.log(isAnswerCheckBoxChecked);
+// Phone Hamburger menu behavior
+
+const hamburgerIcon = document.getElementById("hamburger-icon ");
+const headerBannerContent = document.getElementById("header-banner-Content");
+
+const openMenuButton = document.getElementById("open-menu-button");
+const closeMenuButton = document.getElementById("close-menu-button");
+
+let isOpenHamburgerMenu = false;
+
+function openHamburgerMenu() {
+    if (isOpenHamburgerMenu) {
+        isOpenHamburgerMenu = false;
+        openMenuButton.classList.remove("hidden");
+        closeMenuButton.classList.add("hidden");
+        headerBannerContent.style.animation = "closeMenu 100ms ease-in-out forwards";
+    } else {
+        isOpenHamburgerMenu = true;
+        openMenuButton.classList.add("hidden");
+        closeMenuButton.classList.remove("hidden");
+        headerBannerContent.style.animation = "openMenu 100ms ease-in-out forwards";
+    }
 }
