@@ -33,19 +33,54 @@ function selectYear(yearId) {
 function selectSession(sessionID) {
     session = sessionID;
     sessionSelectionMenu.classList.add("hidden");
-
     variantSelectionMenu.classList.remove("hidden");
 
-    // if (sessionID == "m") {
-    //     createAnswerSheet()
-    // } else {
-    // }
+    createVariantsList(subject, year, session)
 }
 
 function variantSession(variantID) {
     variant = variantID;
 
     checkIfThisExamExist(subject, year, session, variant);
+}
+
+function goBack(goBackToWhat) {
+    subjectSelectionMenu.classList.add("hidden");
+    yearSelectionMenu.classList.add("hidden");
+    variantSelectionMenu.classList.add("hidden");
+    sessionSelectionMenu.classList.add("hidden");
+
+    if (goBackToWhat == "session") {
+        session = ""
+        sessionSelectionMenu.classList.remove("hidden");
+    } else if (goBackToWhat == "year") {
+        year = ""
+        yearSelectionMenu.classList.remove("hidden");
+    } else if (goBackToWhat == "subject") {
+        subject = ""
+        subjectSelectionMenu.classList.remove("hidden");
+    }
+}
+
+const variantSelections = document.getElementById("variant-selections");
+
+function createVariantsList(subject, year, session) {
+    variantSelections.innerHTML = ""
+
+    for (let i = 0; i < 3; i++) {
+        if (allSubjects[subject][year][session][i] != null) {
+            let createAVariant = `
+            <div class="card" id="${i + 1}" onclick="variantSession(${i + 1})">
+                <div class="img-container">
+                    <img src="./media/images/Random/${Math.floor(Math.random() * 7) + 1}.jpg">
+                </div>
+
+                <h2>${i + 1}</h2>
+            </div>`
+
+            variantSelections.innerHTML += createAVariant;
+        }
+    }
 }
 
 function checkIfThisExamExist(subject, year, session, variant) {
@@ -55,8 +90,20 @@ function checkIfThisExamExist(subject, year, session, variant) {
         variantSelectionMenu.classList.add("hidden");
         solvingMenu.classList.remove("hidden");
 
+        changeTheNumberOfQuestions(subject, year, session, variant);
+
         createAnswerSheet();
     }
+}
+
+let numberOfQuestions = 0;
+
+function changeTheNumberOfQuestions(subject, year, session, variant) {
+    numberOfQuestions = allSubjects[subject][year][session][variant - 1].length;
+
+    console.log(numberOfQuestions);
+
+    answerSheet.style.gridTemplateRows = `repeat(${numberOfQuestions}, 1fr)`;
 }
 
 let myAnswers = {
@@ -64,16 +111,16 @@ let myAnswers = {
 }
 
 function createAnswerSheet() {
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < numberOfQuestions; i++) {
         const createAQuestion = `<h1 class="question-number" id="question-number-${i + 1}">${i + 1}</h1>
 
-        <h1 class="option" id="question-${i + 1}-option-a" onclick="chooseAnOption('a', '${i + 1}')">A</h1>
+        <h1 class="option hasHover" id="question-${i + 1}-option-a" onclick="chooseAnOption('a', '${i + 1}')">A</h1>
 
-        <h1 class="option" id="question-${i + 1}-option-b" onclick="chooseAnOption('b', '${i + 1}')">B</h1>
+        <h1 class="option hasHover" id="question-${i + 1}-option-b" onclick="chooseAnOption('b', '${i + 1}')">B</h1>
 
-        <h1 class="option" id="question-${i + 1}-option-c" onclick="chooseAnOption('c', '${i + 1}')">C</h1>
+        <h1 class="option hasHover" id="question-${i + 1}-option-c" onclick="chooseAnOption('c', '${i + 1}')">C</h1>
 
-        <h1 class="option" id="question-${i + 1}-option-d" onclick="chooseAnOption('d', '${i + 1}')">D</h1>`
+        <h1 class="option hasHover" id="question-${i + 1}-option-d" onclick="chooseAnOption('d', '${i + 1}')">D</h1>`
 
         answerSheet.innerHTML += createAQuestion;
     }
@@ -103,13 +150,13 @@ function submitButton() {
 
     if (isAnswerCheckBoxChecked == false) {
 
-        for (let i = 0; i < 40; i++) {
+        for (let i = 0; i < numberOfQuestions; i++) {
             if (myAnswers[i + 1] == "") {
                 alert(`Hey you missed num ${i + 1}`);
                 return
             }
 
-            for (let i = 0; i < 40; i++) {
+            for (let i = 0; i < numberOfQuestions; i++) {
                 answersString += myAnswers[i + 1];
             }
         }
@@ -118,38 +165,49 @@ function submitButton() {
 }
 
 const resultCounter = document.getElementById("result-counter");
+const resultSection = document.getElementById("result-section");
 
 function checkResult(answer) {
     let countCorrectAnswers = 0;
-    let userAnswer = answer.split("", 40);
-    let markScheme = allSubjects[subject][year][session][variant - 1].split("", 40)
-    let answerString = answerTextBox.value.toUpperCase().split("", 40);
+    let userAnswer = answer.split("", numberOfQuestions);
+    let markScheme = allSubjects[subject][year][session][variant - 1].split("", numberOfQuestions)
+    let answerString = answerTextBox.value.toUpperCase().split("", numberOfQuestions);
 
     console.log(answerString);
 
     if (isAnswerCheckBoxChecked == false) {
-        for (let i = 0; i < 40; i++) {
-            if (userAnswer[i] == markScheme[i]) {
+        for (let i = 0; i < numberOfQuestions; i++) {
+            if (markScheme[i] != "Q") {
+                if (userAnswer[i] == markScheme[i]) {
+                    countCorrectAnswers++;
+                    correctOption(i + 1);
+                } else {
+                    wrongOption(markScheme[i], i + 1);
+                }
+            } else {
                 countCorrectAnswers++;
                 correctOption(i + 1);
-            } else {
-                wrongOption(markScheme[i], i + 1);
             }
         }
 
-        resultCounter.textContent = `${countCorrectAnswers} / 40`;
+        resultCounter.textContent = `${countCorrectAnswers} / ${numberOfQuestions}`;
     } else {
-        for (let i = 0; i < 40; i++) {
+        for (let i = 0; i < numberOfQuestions; i++) {
             if (answerString[i] == markScheme[i]) {
                 countCorrectAnswers++;
                 correctOption(i + 1);
             } else {
                 wrongOption(markScheme[i], i + 1);
             }
+
+            chooseAnOption(answerString[i], i + 1)
         }
 
-        resultCounter.textContent = `${countCorrectAnswers} / 40`;
+        resultCounter.textContent = `${countCorrectAnswers} / ${numberOfQuestions}`;
+    }
 
+    if (countCorrectAnswers == numberOfQuestions) {
+        resultSection.classList.add("ace");
     }
 }
 
@@ -188,14 +246,69 @@ function wrongOption(correctOption = "", questionNum) {
 const answerTextBox = document.getElementById("answer-text-box");
 const answerCheckBox = document.getElementById("scroll_toggle");
 
+const answerTextBoxMenu = document.getElementById("answer-text-box-menu");
+
 let isAnswerCheckBoxChecked = false;
 
 function switchBoxes() {
     if (isAnswerCheckBoxChecked) {
         isAnswerCheckBoxChecked = false;
+        answerTextBoxMenu.classList.add("hidden");
+        answerSheet.classList.remove("hidden");
     } else {
         isAnswerCheckBoxChecked = true;
+        answerTextBoxMenu.classList.remove("hidden");
+        answerSheet.classList.add("hidden");
+    }
+}
+
+// Phone Hamburger menu behavior
+
+const hamburgerIcon = document.getElementById("hamburger-icon ");
+const headerBannerContent = document.getElementById("header-banner-Content");
+
+const openMenuButton = document.getElementById("open-menu-button");
+const closeMenuButton = document.getElementById("close-menu-button");
+
+let isOpenHamburgerMenu = false;
+
+function openHamburgerMenu() {
+    if (isOpenHamburgerMenu) {
+        isOpenHamburgerMenu = false;
+        openMenuButton.classList.remove("hidden");
+        closeMenuButton.classList.add("hidden");
+        headerBannerContent.style.animation = "closeMenu 100ms ease-in-out forwards";
+    } else {
+        isOpenHamburgerMenu = true;
+        openMenuButton.classList.add("hidden");
+        closeMenuButton.classList.remove("hidden");
+        headerBannerContent.style.animation = "openMenu 100ms ease-in-out forwards";
+    }
+}
+
+// Removes all the hover effects on touch devices
+function watchForHover() {
+    // lastTouchTime is used for ignoring emulated mousemove events
+    let lastTouchTime = 0
+
+    function enableHover() {
+        if (new Date() - lastTouchTime < 500) return
+        document.body.classList.add('hasHover')
     }
 
-    console.log(isAnswerCheckBoxChecked);
+    function disableHover() {
+        document.body.classList.remove('hasHover')
+    }
+
+    function updateLastTouchTime() {
+        lastTouchTime = new Date()
+    }
+
+    document.addEventListener('touchstart', updateLastTouchTime, true)
+    document.addEventListener('touchstart', disableHover, true)
+    document.addEventListener('mousemove', enableHover, true)
+
+    enableHover()
 }
+
+watchForHover()

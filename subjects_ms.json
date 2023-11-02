@@ -97,21 +97,21 @@
                 "BDCCCCDAABBCAAACBABDBCCCAABCDCCBABBDCCBA"
             ],
             "w": [
-                null,
-                null,
-                null
+                "BCCBCBDABBDCCBBADDCBAACCDBDBDCADADBBBCBA",
+                "ABCBDDBBCACCAADADACBADDBBDCBDABDBDCACACD",
+                "CBDBCDCBCCCCAABABDABCDDBBBABAADADDCACCDC"
             ]
         },
         "2023": {
             "m": [
                 null,
-                null,
+                "BDBADDBDBACDCDDCCCCCDACBACDCCBDCDDCDBBDA",
                 null
             ],
             "s": [
-                null,
-                null,
-                null
+                "DBCDDABCAACADCBBAABBDACBCDCCBCCDCBACADDD",
+                "CCCBBBCBCABDAABCBAADBCACDACDDCDCDBABCDDA",
+                "BCCCBADBDDDCBAAACDCCCBBCAABACADACCCADBCB"
             ],
             "w": [
                 null,
@@ -218,21 +218,21 @@
                 "CDACBBDBBADBCBBBDDBDDCBCACDABBBCBDCBAACA"
             ],
             "w": [
-                null,
-                null,
-                null
+                "CCBABCBCDDBDCCCADBCCDACBBBADDCCACCDCDCCA",
+                "CCBBBCCABDADCCCADBCCCBABBDCDBCCCABACBDBA",
+                "CCBBBBBDCACDCCCADCCCADBBCBDCBCADDADBACDA"
             ]
         },
         "2023": {
             "m": [
                 null,
-                null,
+                "CBDCDABDAABAACDBACACCDCBDACBDDDDDACDBCCD",
                 null
             ],
             "s": [
-                null,
-                null,
-                null
+                "CACBDDABDACBDACABCBBBCCDBDBABDACCCCBCADC",
+                "ADCBDDCBCDACCCAABCBDDCBAADBCACCCBADBCAAC",
+                "CABBBCCDBCCAABBCDBADCACABBCDDDCCCBDACCDB"
             ],
             "w": [
                 null,
@@ -339,21 +339,21 @@
                 "BABBDAAACDBBACBCCBDDCCAABAACCADDACCDBBDB"
             ],
             "w": [
-                null,
-                null,
-                null
+                "DCBBDABCAADBCBAACCACBDADADDDDBBDBCDBACCC",
+                "ABDBDDBCDBDBDCCAACCBCDBDCABDDABDBCABDAAC",
+                "BCCCBDCCCADBADDABCBDCAADACDDDCBDBACBAABC"
             ]
         },
         "2023": {
             "m": [
                 null,
-                null,
+                "BBDACBDBACDBCDDCCADBBCABCAABBDCAABCAABCD",
                 null
             ],
             "s": [
-                null,
-                null,
-                null
+                "DCBABAABBACBDCCABCDBDACBDCAABBDCCDDCACDB",
+                "CDCBDBABACAACDACCDDDCBACCDDADBDADABBCCBB",
+                "ABDCDBCDDCCABCCBDAAADCACBCDACBDABBBBABCD"
             ],
             "w": [
                 null,
@@ -460,21 +460,21 @@
                 "BBBAADADCAABDBDCBACDAABCDDCCDCBDBDACBACA"
             ],
             "w": [
-                null,
-                null,
-                null
+                "BABBBDCDCDABADDCBBABDBCCACACDCBBABDBACDD",
+                "BABDCCACDACDBCBDDBABCDADCCABBBDBACBCACDD",
+                "BADBCDDAACBACBBABDABDDBADCACBDBDABBACBDD"
             ]
         },
         "2023": {
             "m": [
                 null,
-                null,
+                "CDDBCDBABBAACDACAAACBDDBDACCBCDDADBCABBC",
                 null
             ],
             "s": [
-                null,
-                null,
-                null
+                "CADADCBBADBCADDBCDBCADBBACCDDCBBCAADBACA",
+                "CBABDCBCAAADBBDABBCBBCACBCAACDBACBCDCCDB",
+                "CCACCCBADCADBCCBBBBDCCCABCDCCCBDBCADACBB"
             ],
             "w": [
                 null,
@@ -564,15 +564,15 @@
                 "DDDBDACDBCABCCBBBBCADBDDCDBDAD"
             ],
             "w": [
-                null,
-                null,
-                null
+                "ABDDADABCCBCDADBBACADQABADBDCD",
+                "AADCAADDCDADDACBBBCDAQAABDBDBD",
+                "ACDBDBACBABDBBCDBDCBCQAABDCDAD"
             ]
         },
         "2022": {
             "m": [
                 null,
-                null,
+                "ACBADDDCBDDCDCACBCAADQCCBDBADB",
                 null
             ],
             "s": [
@@ -581,21 +581,21 @@
                 "DBDABBADDCBAACABBBCCCAACCDBACB"
             ],
             "w": [
-                null,
-                null,
-                null
+                "CAACCCDBBBDDCCCCADBDDCDDABACDA",
+                "CABBCACABBDDBBADBCCABDADCCACBA",
+                "CADCCABCBBDDDACDCCBABABDDAACAD"
             ]
         },
         "2023": {
             "m": [
                 null,
-                null,
+                "BAACCDADCADDDBAACBBBCACDCBDBAD",
                 null
             ],
             "s": [
-                null,
-                null,
-                null
+                "DCBBCDAACCADCBABCBDBDCDBBCBDBB",
+                "DDDCACABBCCDDDABCBDCCDBABBCACA",
+                "DCBBCDBCCBAADDBBCABDCCACADDACA"
             ],
             "w": [
                 null,

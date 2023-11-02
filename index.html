@@ -10,186 +10,221 @@
 </head>
 
 <body>
-    <header class="header-banner">
-        <div class="header-banner-Title">
-            <a href="." class="remove-link-stuff">
+    <div class="page-wrapper">
+        <header class="header-banner">
+            <div class="header-banner-Title">
                 <h1>Cambridge IGCSE MCQ Checker</h1>
-            </a>
-        </div>
-        <div class="header-banner-Content">
-            <a href="." class="remove-link-stuff">
-                <h3>Subjects</h3>
-            </a>
+            </div>
 
-            <a href="." class="remove-link-stuff">
-                <h3>Donate &lt;3</h3>
-            </a>
-        </div>
-    </header>
+            <div class="hamburger-menu" onclick="openHamburgerMenu()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 256 256"
+                    id="open-menu-button">
+                    <path fill="#ffffff"
+                        d="M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8ZM40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16Zm176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16Z" />
+                </svg>
 
-    <section class="subject" id="subject-selection-menu">
-        <h2>Select a subject. <span class="coming-soon"> (more coming soon)</span>
-        </h2>
-        <div class="subject-selections selections">
-            <div class="card" id="biology" onclick="selectSubject('Biology')">
-                <div class="img-container">
-                    <img src="./media/images/Biology.jpg" alt="Biology img">
-                </div>
-                <h2>Biology</h2>
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" class="hidden"
+                    id="close-menu-button">
+                    <path fill="#ffffff"
+                        d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59L7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12L5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z" />
+                </svg>
             </div>
-            <div class="card" id="chemistry" onclick="selectSubject('Chemistry')">
-                <div class="img-container">
-                    <img src="./media/images/Chemistry.jpg" alt="Biology img">
-                </div>
-                <h2>Chemistry</h2>
-            </div>
-            <div class="card" id="physics" onclick="selectSubject('Physics')">
-                <div class="img-container">
-                    <img src="./media/images/Physics.jpg" alt="Biology img">
-                </div>
-                <h2>Physics</h2>
-            </div>
-            <div class="card" id="combinedScience" onclick="selectSubject('Combined')">
-                <div class="img-container">
-                    <img src="./media/images/Combined Science.png" alt="Biology img">
-                </div>
-                <h2>Combined Science</h2>
-            </div>
-        </div>
-    </section>
 
-    <section class="year hidden" id="year-selection-menu">
-        <h2>Select a year.</h2>
-        <div class="year-selections selections">
-            <div class="card" id="2017" onclick="selectYear('2017')">
-                <div class="img-container">
-                    <img src="./media/images/Random/1.jpg">
-                </div>
-                <h2>2017</h2>
-            </div>
-            <div class="card" id="2018" onclick="selectYear('2018')">
-                <div class="img-container">
-                    <img src="./media/images/Random/2.jpg">
-                </div>
-                <h2>2018</h2>
-            </div>
-            <div class="card" id="2019" onclick="selectYear('2019')">
-                <div class="img-container">
-                    <img src="./media/images/Random/3.jpg">
-                </div>
-                <h2>2019</h2>
-            </div>
-            <div class="card" id="2020" onclick="selectYear('2020')">
-                <div class="img-container">
-                    <img src="./media/images/Random/4.jpg">
-                </div>
-                <h2>2020</h2>
-            </div>
-            <div class="card" id="2021" onclick="selectYear('2021')">
-                <div class="img-container">
-                    <img src="./media/images/Random/5.jpg">
-                </div>
-                <h2>2021</h2>
-            </div>
-            <div class="card" id="2022" onclick="selectYear('2022')">
-                <div class="img-container">
-                    <img src="./media/images/Random/6.jpg">
-                </div>
-                <h2>2022</h2>
-            </div>
-            <div class="card" id="2023" onclick="selectYear('2023')">
-                <div class="img-container">
-                    <img src="./media/images/Random/7.jpg">
-                </div>
-                <h2>2023</h2>
-            </div>
-        </div>
-    </section>
+            <div class="header-banner-Content" id="header-banner-Content">
+                <a href="./index.html" class="remove-link-stuff" id="header-subjects">
+                    <h3>Subjects</h3>
+                </a>
 
-    <section class="session hidden" id="session-selection-menu">
-        <h2>Select a session.</h2>
-        <div class="session-selections selections">
-            <div class="card" id="m" onclick="selectSession('m')">
-                <div class="img-container">
-                    <img src="./media/images/Random/3.jpg">
-                </div>
-                <h2>February - March</h2>
+                <a href="./credits.html" class="remove-link-stuff" id="header-credits">
+                    <h3>Credits</h3>
+                </a>
             </div>
-            <div class="card" id="s" onclick="selectSession('s')">
-                <div class="img-container">
-                    <img src="./media/images/Random/7.jpg">
-                </div>
-                <h2>May - June</h2>
+        </header>
+
+        <section class="subject" id="subject-selection-menu">
+            <div class="subheader">
+                <h2>Select a subject. <span class="coming-soon"> (more coming soon)</span>
             </div>
-            <div class="card" id="w" onclick="selectSession('w')">
-                <div class="img-container">
-                    <img src="./media/images/Random/2.jpg">
+            </h2>
+            <div class="subject-selections selections">
+                <div class="card hasHover" id="biology" onclick="selectSubject('Biology')">
+                    <div class="img-container">
+                        <img src="./media/images/Biology.jpg" alt="Biology img">
+                    </div>
+                    <h2>Biology</h2>
                 </div>
-                <h2>October - November</h2>
-            </div>
-        </div>
-    </section>
-
-    <section class="variant hidden" id="variant-selection-menu">
-        <h2>Select a variant.</h2>
-        <div class="variant-selections selections">
-            <div class="card" id="1" onclick="variantSession(1)">
-                <div class="img-container">
-                    <img src="./media/images/Random/1.jpg">
+                <div class="card hasHover" id="chemistry" onclick="selectSubject('Chemistry')">
+                    <div class="img-container">
+                        <img src="./media/images/Chemistry.jpg" alt="Biology img">
+                    </div>
+                    <h2>Chemistry</h2>
                 </div>
-                <h2>1</h2>
-            </div>
-            <div class="card" id="s" onclick="variantSession(2)">
-                <div class="img-container">
-                    <img src="./media/images/Random/5.jpg">
+                <div class="card hasHover" id="physics" onclick="selectSubject('Physics')">
+                    <div class="img-container">
+                        <img src="./media/images/Physics.jpg" alt="Biology img">
+                    </div>
+                    <h2>Physics</h2>
                 </div>
-                <h2>2</h2>
-            </div>
-            <div class="card" id="w" onclick="variantSession(3)">
-                <div class="img-container">
-                    <img src="./media/images/Random/4.jpg">
+                <div class="card hasHover" id="combinedScience" onclick="selectSubject('Combined')">
+                    <div class="img-container">
+                        <img src="./media/images/Combined Science.png" alt="Biology img">
+                    </div>
+                    <h2>Combined Science</h2>
                 </div>
-                <h2>3</h2>
+                <div class="card hasHover" id="economics" onclick="selectSubject('Economics')">
+                    <div class="img-container">
+                        <img src="./media/images/Economics.png" alt="Economics img">
+                    </div>
+                    <h2>Economics</h2>
+                </div>
+
+                <div class="card hasHover">
+                    <div class="img-container">
+                        <img src="./media/images/Random/5.jpg" alt="Random img">
+                    </div>
+                    <h2>More coming soon</h2>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="solving hidden" id="solving-menu">
-        <h2> Alright everything is set. Now start solving
-            <span class="coming-soon">(or if you did solve it before just
-                put the answers to check them)</span>
-        </h2>
+        <section class="year hidden" id="year-selection-menu">
+            <div class="subheader hover-cursor" onclick="goBack('subject')"><svg xmlns="http://www.w3.org/2000/svg"
+                    width="32" height="32" viewBox="0 0 24 24">
+                    <path fill="#ffffff"
+                        d="m9.55 12l7.35 7.35q.375.375.363.875t-.388.875q-.375.375-.875.375t-.875-.375l-7.7-7.675q-.3-.3-.45-.675t-.15-.75q0-.375.15-.75t.45-.675l7.7-7.7q.375-.375.888-.363t.887.388q.375.375.375.875t-.375.875L9.55 12Z" />
+                </svg>
+                <h2>Select a year.</h2>
+            </div>
+            <div class="year-selections selections">
+                <div class="card hasHover" id="2017" onclick="selectYear('2017')">
+                    <div class="img-container">
+                        <img src="./media/images/Random/1.jpg">
+                    </div>
+                    <h2>2017</h2>
+                </div>
+                <div class="card hasHover" id="2018" onclick="selectYear('2018')">
+                    <div class="img-container">
+                        <img src="./media/images/Random/2.jpg">
+                    </div>
+                    <h2>2018</h2>
+                </div>
+                <div class="card hasHover" id="2019" onclick="selectYear('2019')">
+                    <div class="img-container">
+                        <img src="./media/images/Random/3.jpg">
+                    </div>
+                    <h2>2019</h2>
+                </div>
+                <div class="card hasHover" id="2020" onclick="selectYear('2020')">
+                    <div class="img-container">
+                        <img src="./media/images/Random/4.jpg">
+                    </div>
+                    <h2>2020</h2>
+                </div>
+                <div class="card hasHover" id="2021" onclick="selectYear('2021')">
+                    <div class="img-container">
+                        <img src="./media/images/Random/5.jpg">
+                    </div>
+                    <h2>2021</h2>
+                </div>
+                <div class="card hasHover" id="2022" onclick="selectYear('2022')">
+                    <div class="img-container">
+                        <img src="./media/images/Random/6.jpg">
+                    </div>
+                    <h2>2022</h2>
+                </div>
+                <div class="card hasHover" id="2023" onclick="selectYear('2023')">
+                    <div class="img-container">
+                        <img src="./media/images/Random/7.jpg">
+                    </div>
+                    <h2>2023</h2>
+                </div>
+            </div>
+        </section>
 
-        <div class="answer-sheet" id="answer-sheet">
-            <!-- Created in Javascript cuz this is too much -->
-        </div>
+        <section class="session hidden" id="session-selection-menu">
+            <div class="subheader hover-cursor" onclick="goBack('year')"><svg xmlns="http://www.w3.org/2000/svg"
+                    width="32" height="32" viewBox="0 0 24 24">
+                    <path fill="#ffffff"
+                        d="m9.55 12l7.35 7.35q.375.375.363.875t-.388.875q-.375.375-.875.375t-.875-.375l-7.7-7.675q-.3-.3-.45-.675t-.15-.75q0-.375.15-.75t.45-.675l7.7-7.7q.375-.375.888-.363t.887.388q.375.375.375.875t-.375.875L9.55 12Z" />
+                </svg>
+                <h2>Select a session.</h2>
+            </div>
+            <div class="session-selections selections">
+                <div class="card hasHover" id="m" onclick="selectSession('m')">
+                    <div class="img-container">
+                        <img src="./media/images/Random/3.jpg">
+                    </div>
+                    <h2>February - March</h2>
+                </div>
+                <div class="card hasHover" id="s" onclick="selectSession('s')">
+                    <div class="img-container">
+                        <img src="./media/images/Random/7.jpg">
+                    </div>
+                    <h2>May - June</h2>
+                </div>
+                <div class="card hasHover" id="w" onclick="selectSession('w')">
+                    <div class="img-container">
+                        <img src="./media/images/Random/2.jpg">
+                    </div>
+                    <h2>October - November</h2>
+                </div>
+            </div>
+        </section>
 
-        <div class="answer-text-box-container">
-            <h2 class="answer-text-box-label" for="name">Use text-box instead of the grid</h2>
+        <section class="variant hidden" id="variant-selection-menu">
+            <div class="subheader hover-cursor" onclick="goBack('session')"><svg xmlns="http://www.w3.org/2000/svg"
+                    width="32" height="32" viewBox="0 0 24 24">
+                    <path fill="#ffffff"
+                        d="m9.55 12l7.35 7.35q.375.375.363.875t-.388.875q-.375.375-.875.375t-.875-.375l-7.7-7.675q-.3-.3-.45-.675t-.15-.75q0-.375.15-.75t.45-.675l7.7-7.7q.375-.375.888-.363t.887.388q.375.375.375.875t-.375.875L9.55 12Z" />
+                </svg>
+                <h2>Select a variant.</h2>
+            </div>
+            <div class="variant-selections selections" id="variant-selections">
+                <!-- Created in javascript -->
+            </div>
+        </section>
 
-            <input type="checkbox" id="scroll_toggle" class="toggle" onclick="switchBoxes()">
-            <label for="scroll_toggle" class="slide_animation" style="animation-duration:1.5s;"></label>
-        </div>
+        <section class="solving hidden" id="solving-menu">
+            <h2> Alright everything is set. Now start solving
+                <span class="coming-soon">(or if you did solve it before just
+                    put the answers to check them)</span>
+            </h2>
 
-        <div class="answer-text-box-container">
-            <h2 class="answer-text-box-label" for="answer-text-box">Or you can write here the answers in the form
-                "ABC..."</h2>
-            <input class="answer-text-box" type="text" id="answer-text-box" name="answer-text-box" size="40" />
-        </div>
+            <div class="scroll_toggle-container">
+                <h2 class="scroll_toggle-label" for="name">Use text-box instead of the grid <span
+                        class="coming-soon">(not
+                        Recommended)</span></h2>
 
-        <div class="submit-button" id="submit-button" onclick="submitButton()">
-            <h1>Submit</h1>
-        </div>
+                <input type="checkbox" id="scroll_toggle" class="toggle" onclick="switchBoxes()">
+                <label for="scroll_toggle" class="slide_animation" style="animation-duration:1.5s;"></label>
+            </div>
 
-        <div class="result-section" id="submit-button">
-            <h1 class="result-counter" id="result-counter"> check your performance here after submitting</h1>
-        </div>
+            <div class="answer-sheet" id="answer-sheet">
+                <!-- Created in Javascript cuz this is too much -->
+            </div>
 
-    </section>
+            <div class="answer-text-box-container hidden" id="answer-text-box-menu">
+                <h2 class="answer-text-box-label" for="answer-text-box">write here the answers in the form
+                    "ABC..."</h2>
+                <input class="answer-text-box" type="text" id="answer-text-box" name="answer-text-box" size="40" />
+            </div>
 
-    <!-- <footer>
-        <h3>© Zied</h3>
-    </footer> -->
+            <div class="submit-button hasHover" id="submit-button" onclick="submitButton()">
+                <h1>Submit</h1>
+            </div>
+
+            <div class="result-section" id="result-section">
+                <h1 class="result-counter" id="result-counter"> check your performance here after submitting</h1>
+            </div>
+
+        </section>
+
+    </div>
+    <footer>
+        <h3>© <a href="https://github.com/ZiedDev">Zied
+            </a> ● <a href="https://github.com/omar-elsherbiny">Sherbo
+            </a></h3>
+    </footer>
 
 </body>
 
