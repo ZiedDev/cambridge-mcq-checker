@@ -259,6 +259,7 @@ function switchBoxes() {
         isAnswerCheckBoxChecked = true;
         answerTextBoxMenu.classList.remove("hidden");
         answerSheet.classList.add("hidden");
+<<<<<<< HEAD
     }
 }
 
@@ -294,8 +295,12 @@ function watchForHover() {
     function enableHover() {
         if (new Date() - lastTouchTime < 500) return
         document.body.classList.add('hasHover')
+=======
+>>>>>>> f3d2362fb3985f6bd3e7211b453c67a2d5dea630
     }
+}
 
+<<<<<<< HEAD
     function disableHover() {
         document.body.classList.remove('hasHover')
     }
@@ -312,3 +317,28 @@ function watchForHover() {
 }
 
 watchForHover()
+=======
+// Phone Hamburger menu behavior
+
+const hamburgerIcon = document.getElementById("hamburger-icon ");
+const headerBannerContent = document.getElementById("header-banner-Content");
+
+const openMenuButton = document.getElementById("open-menu-button");
+const closeMenuButton = document.getElementById("close-menu-button");
+
+let isOpenHamburgerMenu = false;
+
+function openHamburgerMenu() {
+    if (isOpenHamburgerMenu) {
+        isOpenHamburgerMenu = false;
+        openMenuButton.classList.remove("hidden");
+        closeMenuButton.classList.add("hidden");
+        headerBannerContent.style.animation = "closeMenu 100ms ease-in-out forwards";
+    } else {
+        isOpenHamburgerMenu = true;
+        openMenuButton.classList.add("hidden");
+        closeMenuButton.classList.remove("hidden");
+        headerBannerContent.style.animation = "openMenu 100ms ease-in-out forwards";
+    }
+}
+>>>>>>> f3d2362fb3985f6bd3e7211b453c67a2d5dea630
