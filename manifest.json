@@ -1,0 +1,51 @@
+{
+    "name": "Cambridge MCQ Checker",
+    "short_name": "Cambridge MCQ Checker",
+    "theme_color": "#E6EDF3",
+    "background_color": "#0D1117",
+    "display": "standalone",
+    "Scope": "/",
+    "start_url": "/",
+    "icons": [
+        {
+            "src": "./media/images/Logo/Logo x72",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "./media/images/Logo/Logo x96",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "./media/images/Logo/Logo x128",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "./media/images/Logo/Logo x144",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "./media/images/Logo/Logo x152",
+            "sizes": "152x152",
+            "type": "image/png"
+        },
+        {
+            "src": "./media/images/Logo/Logo x192",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "./media/images/Logo/Logo x384",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "./media/images/Logo/Logo x512",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
