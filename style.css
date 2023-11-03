@@ -171,10 +171,9 @@ a:hover {
     padding: 1.5rem
 }
 
-.subject>.al-section {
+.subject>.al-section>.selections {
     grid-template-rows: 1fr;
 }
-
 
 .selections>.card {
     position: relative;
