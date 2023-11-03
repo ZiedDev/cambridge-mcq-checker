@@ -1,8 +1,15 @@
-let allSubjects;
+// let allSubjects;
+let olSubjects;
 
-fetch('./subjects_ms.json')
+fetch('./OL_subjects_ms.json')
     .then((response) => response.json())
-    .then((json) => allSubjects = json);
+    .then((json) => olSubjects = json);
+
+let alSubjects;
+
+fetch('./AL_subjects_ms.json')
+    .then((response) => response.json())
+    .then((json) => alSubjects = json);
 
 // dom elements
 const subjectSelectionMenu = document.getElementById("subject-selection-menu");
@@ -13,13 +20,15 @@ const solvingMenu = document.getElementById("solving-menu");
 const answerSheet = document.getElementById("answer-sheet");
 
 // variables
+let olOrAl;
 let subject;
 let year;
 let session;
 let variant;
 
-function selectSubject(subjectId) {
+function selectSubject(subjectId, olOrAlID) {
     subject = subjectId;
+    olOrAl = olOrAlID;
     subjectSelectionMenu.classList.add("hidden");
     yearSelectionMenu.classList.remove("hidden");
 }
@@ -35,13 +44,13 @@ function selectSession(sessionID) {
     sessionSelectionMenu.classList.add("hidden");
     variantSelectionMenu.classList.remove("hidden");
 
-    createVariantsList(subject, year, session)
+    createVariantsList(subject, year, session, olOrAl)
 }
 
 function variantSession(variantID) {
     variant = variantID;
 
-    checkIfThisExamExist(subject, year, session, variant);
+    checkIfThisExamExist(subject, year, session, variant, olOrAl);
 }
 
 function goBack(goBackToWhat) {
@@ -58,48 +67,84 @@ function goBack(goBackToWhat) {
         yearSelectionMenu.classList.remove("hidden");
     } else if (goBackToWhat == "subject") {
         subject = ""
+        olOrAl = ""
         subjectSelectionMenu.classList.remove("hidden");
     }
 }
 
 const variantSelections = document.getElementById("variant-selections");
 
-function createVariantsList(subject, year, session) {
+function createVariantsList(subject, year, session, olOrAlID) {
     variantSelections.innerHTML = ""
 
-    for (let i = 0; i < 3; i++) {
-        if (allSubjects[subject][year][session][i] != null) {
-            let createAVariant = `
-            <div class="card" id="${i + 1}" onclick="variantSession(${i + 1})">
-                <div class="img-container">
-                    <img src="./media/images/Random/${Math.floor(Math.random() * 7) + 1}.jpg">
-                </div>
+    if (olOrAlID == "ol") {
+        for (let i = 0; i < 3; i++) {
+            if (olSubjects[subject][year][session][i] != null) {
+                let createAVariant = `
+                <div class="card" id="${i + 1}" onclick="variantSession(${i + 1})">
+                    <div class="img-container">
+                        <img src="./media/images/Random/${Math.floor(Math.random() * 7) + 1}.jpg">
+                    </div>
+    
+                    <h2>${i + 1}</h2>
+                </div>`
 
-                <h2>${i + 1}</h2>
-            </div>`
-
-            variantSelections.innerHTML += createAVariant;
+                variantSelections.innerHTML += createAVariant;
+            }
         }
+    } else if (olOrAlID == "al") {
+        for (let i = 0; i < 3; i++) {
+            if (alSubjects[subject][year][session][i] != null) {
+                let createAVariant = `
+                <div class="card" id="${i + 1}" onclick="variantSession(${i + 1})">
+                    <div class="img-container">
+                        <img src="./media/images/Random/${Math.floor(Math.random() * 7) + 1}.jpg">
+                    </div>
+    
+                    <h2>${i + 1}</h2>
+                </div>`
+
+                variantSelections.innerHTML += createAVariant;
+            }
+        }
+
     }
 }
 
-function checkIfThisExamExist(subject, year, session, variant) {
-    if (allSubjects[subject][year][session][variant - 1] == null) {
-        return
-    } else {
-        variantSelectionMenu.classList.add("hidden");
-        solvingMenu.classList.remove("hidden");
+function checkIfThisExamExist(subject, year, session, variant, olOrAlID) {
+    if (olOrAlID == "ol") {
+        if (olSubjects[subject][year][session][variant - 1] == null) {
+            return
+        } else {
+            variantSelectionMenu.classList.add("hidden");
+            solvingMenu.classList.remove("hidden");
 
-        changeTheNumberOfQuestions(subject, year, session, variant);
+            changeTheNumberOfQuestions(subject, year, session, variant, olOrAl);
 
-        createAnswerSheet();
+            createAnswerSheet();
+        }
+    } else if (olOrAlID == "al") {
+        if (alSubjects[subject][year][session][variant - 1] == null) {
+            return
+        } else {
+            variantSelectionMenu.classList.add("hidden");
+            solvingMenu.classList.remove("hidden");
+
+            changeTheNumberOfQuestions(subject, year, session, variant, olOrAl);
+
+            createAnswerSheet();
+        }
     }
 }
 
 let numberOfQuestions = 0;
 
-function changeTheNumberOfQuestions(subject, year, session, variant) {
-    numberOfQuestions = allSubjects[subject][year][session][variant - 1].length;
+function changeTheNumberOfQuestions(subject, year, session, variant, olOrAlID) {
+    if (olOrAlID == "ol") {
+        numberOfQuestions = olSubjects[subject][year][session][variant - 1].length;
+    } else if (olOrAlID == "al") {
+        numberOfQuestions = alSubjects[subject][year][session][variant - 1].length;
+    }
 
     console.log(numberOfQuestions);
 
@@ -170,7 +215,7 @@ const resultSection = document.getElementById("result-section");
 function checkResult(answer) {
     let countCorrectAnswers = 0;
     let userAnswer = answer.split("", numberOfQuestions);
-    let markScheme = allSubjects[subject][year][session][variant - 1].split("", numberOfQuestions)
+    let markScheme = olOrAl == "ol" ? olSubjects[subject][year][session][variant - 1].split("", numberOfQuestions) : alSubjects[subject][year][session][variant - 1].split("", numberOfQuestions);
     let answerString = answerTextBox.value.toUpperCase().split("", numberOfQuestions);
 
     console.log(answerString);
@@ -186,18 +231,23 @@ function checkResult(answer) {
                 }
             } else {
                 countCorrectAnswers++;
-                correctOption(i + 1);
+                discountedOption(i + 1);
             }
         }
 
         resultCounter.textContent = `${countCorrectAnswers} / ${numberOfQuestions}`;
     } else {
         for (let i = 0; i < numberOfQuestions; i++) {
-            if (answerString[i] == markScheme[i]) {
-                countCorrectAnswers++;
-                correctOption(i + 1);
+            if (markScheme[i] != "Q") {
+                if (answerString[i] == markScheme[i]) {
+                    countCorrectAnswers++;
+                    correctOption(i + 1);
+                } else {
+                    wrongOption(markScheme[i], i + 1);
+                }
             } else {
-                wrongOption(markScheme[i], i + 1);
+                countCorrectAnswers++;
+                discountedOption(i + 1);
             }
 
             chooseAnOption(answerString[i], i + 1)
@@ -216,6 +266,7 @@ function correctOption(questionNum) {
 
     questionNumber.classList.remove("correct-option");
     questionNumber.classList.remove("wrong-option");
+    questionNumber.classList.remove("discounted-option");
 
     questionNumber.classList.add("correct-option");
 }
@@ -225,6 +276,7 @@ function wrongOption(correctOption = "", questionNum) {
 
     questionNumber.classList.remove("correct-option");
     questionNumber.classList.remove("wrong-option");
+    questionNumber.classList.remove("discounted-option");
 
     questionNumber.classList.add("wrong-option");
 
@@ -241,6 +293,16 @@ function wrongOption(correctOption = "", questionNum) {
     const correctOptioned = document.getElementById(`question-${questionNum}-option-${correctOption.toLowerCase()}`);
 
     correctOptioned.classList.add("corrected-option");
+}
+
+function discountedOption(questionNum) {
+    const questionNumber = document.getElementById(`question-number-${questionNum}`);
+
+    questionNumber.classList.remove("correct-option");
+    questionNumber.classList.remove("wrong-option");
+    questionNumber.classList.remove("discounted-option");
+
+    questionNumber.classList.add("discounted-option");
 }
 
 const answerTextBox = document.getElementById("answer-text-box");

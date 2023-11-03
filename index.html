@@ -62,47 +62,75 @@
         </header>
 
         <section class="subject" id="subject-selection-menu">
-            <div class="subheader">
-                <h2>Select a subject. <span class="coming-soon"> (more coming soon)</span>
-            </div>
-            </h2>
-            <div class="subject-selections selections">
-                <div class="card hasHover" id="biology" onclick="selectSubject('Biology')">
-                    <div class="img-container">
-                        <img src="./media/images/Biology.jpg" alt="Biology img">
-                    </div>
-                    <h2>Biology</h2>
+            <div class="ol-section">
+                <div class="subheader">
+                    <h2>Select an OL subject. <span class="coming-soon"> (more coming soon)</span>
                 </div>
-                <div class="card hasHover" id="chemistry" onclick="selectSubject('Chemistry')">
-                    <div class="img-container">
-                        <img src="./media/images/Chemistry.jpg" alt="Biology img">
+                </h2>
+                <div class="subject-selections selections">
+                    <div class="card hasHover" id="biology" onclick="selectSubject('Biology', 'ol')">
+                        <div class="img-container">
+                            <img src="./media/images/Biology.jpg" alt="Biology img">
+                        </div>
+                        <h2>Biology</h2>
                     </div>
-                    <h2>Chemistry</h2>
-                </div>
-                <div class="card hasHover" id="physics" onclick="selectSubject('Physics')">
-                    <div class="img-container">
-                        <img src="./media/images/Physics.jpg" alt="Biology img">
+                    <div class="card hasHover" id="chemistry" onclick="selectSubject('Chemistry', 'ol')">
+                        <div class="img-container">
+                            <img src="./media/images/Chemistry.jpg" alt="Biology img">
+                        </div>
+                        <h2>Chemistry</h2>
                     </div>
-                    <h2>Physics</h2>
-                </div>
-                <div class="card hasHover" id="combinedScience" onclick="selectSubject('Combined')">
-                    <div class="img-container">
-                        <img src="./media/images/Combined Science.png" alt="Biology img">
+                    <div class="card hasHover" id="physics" onclick="selectSubject('Physics', 'ol')">
+                        <div class="img-container">
+                            <img src="./media/images/Physics.jpg" alt="Biology img">
+                        </div>
+                        <h2>Physics</h2>
                     </div>
-                    <h2>Combined Science</h2>
-                </div>
-                <div class="card hasHover" id="economics" onclick="selectSubject('Economics')">
-                    <div class="img-container">
-                        <img src="./media/images/Economics.png" alt="Economics img">
+                    <div class="card hasHover" id="combinedScience" onclick="selectSubject('Combined', 'ol')">
+                        <div class="img-container">
+                            <img src="./media/images/Combined Science.png" alt="Biology img">
+                        </div>
+                        <h2>Combined Science</h2>
                     </div>
-                    <h2>Economics</h2>
-                </div>
+                    <div class="card hasHover" id="economics" onclick="selectSubject('Economics', 'ol')">
+                        <div class="img-container">
+                            <img src="./media/images/Economics.png" alt="Economics img">
+                        </div>
+                        <h2>Economics</h2>
+                    </div>
 
-                <div class="card hasHover">
-                    <div class="img-container">
-                        <img src="./media/images/Random/5.jpg" alt="Random img">
+                    <div class="card hasHover">
+                        <div class="img-container">
+                            <img src="./media/images/Random/5.jpg" alt="Random img">
+                        </div>
+                        <h2>More coming soon</h2>
                     </div>
-                    <h2>More coming soon</h2>
+                </div>
+            </div>
+            <div class="al-section">
+                <div class="subheader">
+                    <h2>Select an AL subject. <span class="coming-soon"> (more coming soon)</span>
+                </div>
+                </h2>
+                <div class="subject-selections selections">
+                    <div class="card hasHover" id="biology" onclick="selectSubject('Biology', 'al')">
+                        <div class="img-container">
+                            <img src="./media/images/AL_Biology.jpg" alt="Biology img">
+                        </div>
+                        <h2>Biology</h2>
+                    </div>
+                    <div class="card hasHover" id="chemistry" onclick="selectSubject('Chemistry', 'al')">
+                        <div class="img-container">
+                            <img src="./media/images/AL_Chemistry.jpg" alt="Biology img">
+                        </div>
+                        <h2>Chemistry</h2>
+                    </div>
+                    <div class="card hasHover" id="physics" onclick="selectSubject('Physics', 'al')">
+                        <div class="img-container">
+                            <img src="./media/images/AL_Physics.jpg" alt="Biology img">
+                        </div>
+                        <h2>Physics</h2>
+                    </div>
                 </div>
             </div>
         </section>
@@ -235,6 +263,11 @@
 
             <div class="result-section" id="result-section">
                 <h1 class="result-counter" id="result-counter"> check your performance here after submitting</h1>
+            </div>
+
+            <div class="result-section" id="result-section">
+                <h2>Key: <br> <span class="green-text">Green</span> → Correct <br> <span class="red-text">Red</span> →
+                    Wrong <br> <span class="purple-text">Purple</span> → Discounted (rare)</h2>
             </div>
 
         </section>
