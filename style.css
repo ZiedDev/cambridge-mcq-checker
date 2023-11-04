@@ -71,6 +71,12 @@ footer {
     color: #5E656E;
 }
 
+.path {
+    font-size: 14pt;
+    color: #5E656E;
+
+}
+
 .remove-link-stuff {
     text-decoration: none;
     color: #E6EDF3;
@@ -135,7 +141,7 @@ a:hover {
 .variant,
 .solving {
     width: 90%;
-    margin: 4rem auto 0 auto;
+    margin: 3rem auto 0 auto;
     user-select: none;
 }
 
@@ -147,7 +153,18 @@ a:hover {
 .subject>.al-section>.subheader>h2,
 .year>.subheader>h2,
 .session>.subheader>h2,
-.variant>.subheader>h2 {
+.variant>.subheader>h2,
+.solving>.subheader>h2 {
+    margin: 0;
+}
+
+
+.subject>.ol-section>.subheader,
+.subject>.al-section>.subheader,
+.year>.subheader,
+.session>.subheader,
+.variant>.subheader,
+.solving>.subheader {
     margin: 0 0 2rem 0;
 }
 
@@ -155,18 +172,19 @@ a:hover {
 .subject>.al-section>.subheader,
 .year>.subheader,
 .session>.subheader,
-.variant>.subheader {
+.variant>.subheader,
+.solving>.subheader {
     display: flex;
     flex-direction: row;
     gap: 1rem;
-    align-content: center;
+    align-items: center;
 }
 
 .selections {
     display: grid;
     grid-template-rows: repeat(2, 1fr);
     gap: 2rem;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     padding: 1.5rem
 }
@@ -195,7 +213,7 @@ a:hover {
 .session>.selections>.card,
 .variant>.selections>.card,
 .solving>.selections>.card {
-    height: 6rem;
+    height: 10rem;
     width: 40rem;
 }
 
@@ -206,19 +224,16 @@ a:hover {
     box-shadow: var(--shadow-elevation-high);
 
     .img-container>img {
-        transform: scale(104.6875%);
+        transform: scale(110%);
     }
 }
-
-/* .selections>.card:active {
-    cursor: pointer;
-    scale: 0.9;
-} */
 
 .selections>.card>h2 {
     position: absolute;
     bottom: 0;
     left: 10%;
+
+    font-size: x-large;
 }
 
 .selections>.card>.img-container>img {
@@ -241,15 +256,12 @@ a:hover {
 }
 
 .year-selections {
-    gap: 1rem;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(7, 1fr);
-    gap: 2.5rem;
 }
 
 .session-selections,
 .variant-selections {
-    gap: 1rem;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, 1fr);
 }
@@ -293,10 +305,6 @@ a:hover {
     background-color: #21262D;
     cursor: pointer;
 }
-
-/* .answer-sheet>.option:active {
-    background-color: #5E656E;
-} */
 
 .answer-sheet>.option-selected {
     background-color: #5E656E;
@@ -342,10 +350,6 @@ a:hover {
     background-color: #1c6b2b;
     cursor: pointer;
 }
-
-/* .submit-button:active {
-    background-color: #4e9e5e;
-} */
 
 .result-section {
     color: #010409;
@@ -398,6 +402,10 @@ a:hover {
 
 .solving>.hidden {
     display: none;
+}
+
+.scroll_toggle-label {
+    text-align: center;
 }
 
 input[type="checkbox"].toggle+label {
@@ -453,7 +461,7 @@ input[type="checkbox"].toggle:checked+label::after {
 
 .scroll_toggle-container {
     display: flex;
-    margin: 2rem 0 2rem 0;
+    margin: 0rem 0 2rem 0;
 }
 
 
@@ -519,12 +527,20 @@ input[type="checkbox"].toggle:checked+label::after {
         width: 40rem;
     }
 
+    .selections>.card>h2 {
+        font-size: xx-large;
+    }
+
     .year>.selections>.card,
     .session>.selections>.card,
     .variant>.selections>.card,
     .solving>.selections>.card {
         height: 10rem;
         width: 80dvw;
+    }
+
+    .solving>h2 {
+        text-align: center;
     }
 
     .scroll_toggle-container {
@@ -575,6 +591,11 @@ input[type="checkbox"].toggle:checked+label::after {
 
     .header-banner {
         position: relative;
+    }
+
+    .header-banner>.header-banner-Title {
+        padding-left: 0;
+        padding-right: 5%;
     }
 
     .header-banner>.header-banner-Content {

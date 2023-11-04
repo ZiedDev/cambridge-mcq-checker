@@ -64,9 +64,8 @@
         <section class="subject" id="subject-selection-menu">
             <div class="ol-section">
                 <div class="subheader">
-                    <h2>Select an OL subject. <span class="coming-soon"> (more coming soon)</span>
+                    <h2>Select an OL subject.</h2>
                 </div>
-                </h2>
                 <div class="subject-selections selections">
                     <div class="card hasHover" id="biology" onclick="selectSubject('Biology', 'ol')">
                         <div class="img-container">
@@ -99,19 +98,18 @@
                         <h2>Economics</h2>
                     </div>
 
-                    <div class="card hasHover">
+                    <!-- <div class="card hasHover">
                         <div class="img-container">
                             <img src="./media/images/Random/5.jpg" alt="Random img">
                         </div>
                         <h2>More coming soon</h2>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="al-section">
                 <div class="subheader">
-                    <h2>Select an AL subject. <span class="coming-soon"> (more coming soon)</span>
+                    <h2>Select an AL subject.</h2>
                 </div>
-                </h2>
                 <div class="subject-selections selections">
                     <div class="card hasHover" id="biology" onclick="selectSubject('Biology', 'al')">
                         <div class="img-container">
@@ -136,60 +134,21 @@
         </section>
 
         <section class="year hidden" id="year-selection-menu">
-            <div class="subheader hover-cursor" onclick="goBack('subject')"><svg xmlns="http://www.w3.org/2000/svg"
-                    width="32" height="32" viewBox="0 0 24 24">
+            <h3 class="path" id="year-path">path</h3>
+            <div class="subheader hover-cursor" onclick="goBack('subject')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                     <path fill="#ffffff"
                         d="m9.55 12l7.35 7.35q.375.375.363.875t-.388.875q-.375.375-.875.375t-.875-.375l-7.7-7.675q-.3-.3-.45-.675t-.15-.75q0-.375.15-.75t.45-.675l7.7-7.7q.375-.375.888-.363t.887.388q.375.375.375.875t-.375.875L9.55 12Z" />
                 </svg>
                 <h2>Select a year.</h2>
             </div>
-            <div class="year-selections selections">
-                <div class="card hasHover" id="2017" onclick="selectYear('2017')">
-                    <div class="img-container">
-                        <img src="./media/images/Random/1.jpg">
-                    </div>
-                    <h2>2017</h2>
-                </div>
-                <div class="card hasHover" id="2018" onclick="selectYear('2018')">
-                    <div class="img-container">
-                        <img src="./media/images/Random/2.jpg">
-                    </div>
-                    <h2>2018</h2>
-                </div>
-                <div class="card hasHover" id="2019" onclick="selectYear('2019')">
-                    <div class="img-container">
-                        <img src="./media/images/Random/3.jpg">
-                    </div>
-                    <h2>2019</h2>
-                </div>
-                <div class="card hasHover" id="2020" onclick="selectYear('2020')">
-                    <div class="img-container">
-                        <img src="./media/images/Random/4.jpg">
-                    </div>
-                    <h2>2020</h2>
-                </div>
-                <div class="card hasHover" id="2021" onclick="selectYear('2021')">
-                    <div class="img-container">
-                        <img src="./media/images/Random/5.jpg">
-                    </div>
-                    <h2>2021</h2>
-                </div>
-                <div class="card hasHover" id="2022" onclick="selectYear('2022')">
-                    <div class="img-container">
-                        <img src="./media/images/Random/6.jpg">
-                    </div>
-                    <h2>2022</h2>
-                </div>
-                <div class="card hasHover" id="2023" onclick="selectYear('2023')">
-                    <div class="img-container">
-                        <img src="./media/images/Random/7.jpg">
-                    </div>
-                    <h2>2023</h2>
-                </div>
+            <div class="year-selections selections" id="year-selections">
+                <!-- Created in javascript -->
             </div>
         </section>
 
         <section class="session hidden" id="session-selection-menu">
+            <h3 class="path" id="session-path">path</h3>
             <div class="subheader hover-cursor" onclick="goBack('year')"><svg xmlns="http://www.w3.org/2000/svg"
                     width="32" height="32" viewBox="0 0 24 24">
                     <path fill="#ffffff"
@@ -197,29 +156,13 @@
                 </svg>
                 <h2>Select a session.</h2>
             </div>
-            <div class="session-selections selections">
-                <div class="card hasHover" id="m" onclick="selectSession('m')">
-                    <div class="img-container">
-                        <img src="./media/images/Random/3.jpg">
-                    </div>
-                    <h2>February - March</h2>
-                </div>
-                <div class="card hasHover" id="s" onclick="selectSession('s')">
-                    <div class="img-container">
-                        <img src="./media/images/Random/7.jpg">
-                    </div>
-                    <h2>May - June</h2>
-                </div>
-                <div class="card hasHover" id="w" onclick="selectSession('w')">
-                    <div class="img-container">
-                        <img src="./media/images/Random/2.jpg">
-                    </div>
-                    <h2>October - November</h2>
-                </div>
+            <div class="session-selections selections" id="session-selections">
+                <!-- Created in javascript -->
             </div>
         </section>
 
         <section class="variant hidden" id="variant-selection-menu">
+            <h3 class="path" id="variant-path">path</h3>
             <div class="subheader hover-cursor" onclick="goBack('session')"><svg xmlns="http://www.w3.org/2000/svg"
                     width="32" height="32" viewBox="0 0 24 24">
                     <path fill="#ffffff"
@@ -233,10 +176,17 @@
         </section>
 
         <section class="solving hidden" id="solving-menu">
-            <h2> Alright everything is set. Now start solving
-                <span class="coming-soon">(or if you did solve it before just
-                    put the answers to check them)</span>
-            </h2>
+            <h3 class="path" id="solving-path">path</h3>
+            <div class="subheader hover-cursor" onclick="goBack('variant')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                    <path fill="#ffffff"
+                        d="m9.55 12l7.35 7.35q.375.375.363.875t-.388.875q-.375.375-.875.375t-.875-.375l-7.7-7.675q-.3-.3-.45-.675t-.15-.75q0-.375.15-.75t.45-.675l7.7-7.7q.375-.375.888-.363t.887.388q.375.375.375.875t-.375.875L9.55 12Z" />
+                </svg>
+                <h2>Go back</h2>
+            </div>
+
+            <h2>Alright everything is set. Now start solving</h2>
+
 
             <div class="scroll_toggle-container">
                 <h2 class="scroll_toggle-label" for="name">Use text-box instead of the grid <span
@@ -253,8 +203,9 @@
 
             <div class="answer-text-box-container hidden" id="answer-text-box-menu">
                 <h2 class="answer-text-box-label" for="answer-text-box">write here the answers in the form
-                    "ABC..."</h2>
+                    "ABC..." <span class="coming-soon">(might break)</span></h2>
                 <input class="answer-text-box" type="text" id="answer-text-box" name="answer-text-box" size="40" />
+
             </div>
 
             <div class="submit-button hasHover" id="submit-button" onclick="submitButton()">

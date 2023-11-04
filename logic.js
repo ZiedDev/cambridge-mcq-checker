@@ -1,12 +1,10 @@
-// let allSubjects;
+// Json;
 let olSubjects;
-
 fetch('./OL_subjects_ms.json')
     .then((response) => response.json())
     .then((json) => olSubjects = json);
 
 let alSubjects;
-
 fetch('./AL_subjects_ms.json')
     .then((response) => response.json())
     .then((json) => alSubjects = json);
@@ -14,10 +12,18 @@ fetch('./AL_subjects_ms.json')
 // dom elements
 const subjectSelectionMenu = document.getElementById("subject-selection-menu");
 const yearSelectionMenu = document.getElementById("year-selection-menu");
+const yearSelections = document.getElementById("year-selections");
 const sessionSelectionMenu = document.getElementById("session-selection-menu");
+const sessionSelections = document.getElementById("session-selections");
 const variantSelectionMenu = document.getElementById("variant-selection-menu");
+const variantSelections = document.getElementById("variant-selections");
 const solvingMenu = document.getElementById("solving-menu");
 const answerSheet = document.getElementById("answer-sheet");
+const resultCounter = document.getElementById("result-counter");
+const resultSection = document.getElementById("result-section");
+const answerTextBox = document.getElementById("answer-text-box");
+const answerCheckBox = document.getElementById("scroll_toggle");
+const answerTextBoxMenu = document.getElementById("answer-text-box-menu");
 
 // variables
 let olOrAl;
@@ -25,39 +31,174 @@ let subject;
 let year;
 let session;
 let variant;
+let numberOfQuestions = 0;
+let isAnswerCheckBoxChecked = false;
+let myAnswers = {
+    1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "", 9: "", 10: "", 11: "", 12: "", 13: "", 14: "", 15: "", 16: "", 17: "", 18: "", 19: "", 20: "", 21: "", 22: "", 23: "", 24: "", 25: "", 26: "", 27: "", 28: "", 29: "", 30: "", 31: "", 32: "", 33: "", 34: "", 35: "", 36: "", 37: "", 38: "", 39: "", 40: ""
+}
+let ImgsArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
-function selectSubject(subjectId, olOrAlID) {
+function selectSubject(subjectId, olOrAlId) {
     subject = subjectId;
-    olOrAl = olOrAlID;
+    olOrAl = olOrAlId;
     subjectSelectionMenu.classList.add("hidden");
     yearSelectionMenu.classList.remove("hidden");
+
+    createYearList(subject, olOrAl);
+    changePath(olOrAl, subject);
 }
 
 function selectYear(yearId) {
     year = yearId;
     yearSelectionMenu.classList.add("hidden");
     sessionSelectionMenu.classList.remove("hidden");
+
+    createSessionList(subject, year, olOrAl)
+    changePath(olOrAl, subject, year);
 }
 
-function selectSession(sessionID) {
-    session = sessionID;
+function selectSession(sessionId) {
+    session = sessionId;
     sessionSelectionMenu.classList.add("hidden");
     variantSelectionMenu.classList.remove("hidden");
 
     createVariantsList(subject, year, session, olOrAl)
+    changePath(olOrAl, subject, year, session);
 }
 
-function variantSession(variantID) {
-    variant = variantID;
+function variantSession(variantId) {
+    variant = variantId;
 
     checkIfThisExamExist(subject, year, session, variant, olOrAl);
+    changePath(olOrAl, subject, year, session, variant);
+}
+
+function createSessionList(subject, year, olOrAlId) {
+    let randImgsArray = shuffle(ImgsArray);
+
+    let numberOfSessions = 0;
+    sessionSelections.innerHTML = ""
+
+    if (olOrAlId == "ol") {
+        numberOfSessions = Object.keys(olSubjects[subject][year]).length;
+
+        for (let i = 0; i < numberOfSessions; i++) {
+            if (olSubjects[subject] != undefined) {
+                let createASession = `
+                <div class="card hasHover" id="${Object.keys(olSubjects[subject][year])[i]}" onclick="selectSession('${Object.keys(olSubjects[subject][year])[i]}')">
+                    <div class="img-container">
+                        <img src="./media/images/Random/${randImgsArray[i]}.jpg">
+                    </div>
+                    <h2>${Object.keys(olSubjects[subject][year])[i] == "m" ? "February - March" : Object.keys(olSubjects[subject][year])[i] == "s" ? "May - June" : "October - November"}</h2>
+                </div>`
+
+                sessionSelections.innerHTML += createASession;
+            }
+        }
+    } else if (olOrAlId == "al") {
+        numberOfSessions = Object.keys(alSubjects[subject][year]).length;
+
+        for (let i = 0; i < numberOfSessions; i++) {
+            if (alSubjects[subject] != undefined) {
+                let createASession = `
+                <div class="card hasHover" id="${Object.keys(alSubjects[subject][year])[i]}" onclick="selectSession('${Object.keys(alSubjects[subject][year])[i]}')">
+                    <div class="img-container">
+                        <img src="./media/images/Random/${randImgsArray[i]}.jpg">
+                    </div>
+                    <h2>${Object.keys(alSubjects[subject][year])[i] == "m" ? "February - March" : Object.keys(alSubjects[subject][year])[i] == "s" ? "May - June" : "October - November"}</h2>
+                </div>`
+
+                sessionSelections.innerHTML += createASession;
+            }
+        }
+    }
+}
+
+function createYearList(subject, olOrAlId) {
+    let randImgsArray = shuffle(ImgsArray);
+
+    let numberOfYears = 0;
+    yearSelections.innerHTML = ""
+
+    if (olOrAlId == "ol") {
+        numberOfYears = Object.keys(olSubjects[subject]).length;
+
+        for (let i = 0; i < numberOfYears; i++) {
+            if (olSubjects[subject] != undefined) {
+                let createAYear = `
+                <div class="card hasHover" id="${2017 + i}" onclick="selectYear('${2017 + i}')">
+                    <div class="img-container">
+                        <img src="./media/images/Random/${randImgsArray[i]}.jpg">
+                    </div>
+                    <h2>${2017 + i}</h2>
+                </div>`
+
+                yearSelections.innerHTML += createAYear;
+            }
+        }
+    } else if (olOrAlId == "al") {
+        numberOfYears = Object.keys(alSubjects[subject]).length;
+
+        for (let i = 0; i < numberOfYears; i++) {
+            if (alSubjects[subject] != undefined) {
+                let createAYear = `
+                <div class="card hasHover" id="${2017 + i}" onclick="selectYear('${2017 + i}')">
+                    <div class="img-container">
+                        <img src="./media/images/Random/${randImgsArray[i]}.jpg">
+                    </div>
+                    <h2>${2017 + i}</h2>
+                </div>`
+
+                yearSelections.innerHTML += createAYear;
+            }
+        }
+    }
+}
+
+function createVariantsList(subject, year, session, olOrAlId) {
+    let randImgsArray = shuffle(ImgsArray);
+
+    variantSelections.innerHTML = ""
+
+    if (olOrAlId == "ol") {
+        for (let i = 0; i < 3; i++) {
+            if (olSubjects[subject][year][session][i] != null) {
+                let createAVariant = `
+                <div class="card" id="${i + 1}" onclick="variantSession(${i + 1})">
+                    <div class="img-container">
+                        <img src="./media/images/Random/${randImgsArray[i]}.jpg">
+                    </div>
+    
+                    <h2>${i + 1}</h2>
+                </div>`
+
+                variantSelections.innerHTML += createAVariant;
+            }
+        }
+    } else if (olOrAlId == "al") {
+        for (let i = 0; i < 3; i++) {
+            if (alSubjects[subject][year][session][i] != null) {
+                let createAVariant = `
+                <div class="card" id="${i + 1}" onclick="variantSession(${i + 1})">
+                    <div class="img-container">
+                        <img src="./media/images/Random/${randImgsArray[i]}.jpg">
+                    </div>
+    
+                    <h2>${i + 1}</h2>
+                </div>`
+
+                variantSelections.innerHTML += createAVariant;
+            }
+        }
+    }
 }
 
 function goBack(goBackToWhat) {
     subjectSelectionMenu.classList.add("hidden");
     yearSelectionMenu.classList.add("hidden");
-    variantSelectionMenu.classList.add("hidden");
     sessionSelectionMenu.classList.add("hidden");
+    variantSelectionMenu.classList.add("hidden");
+    solvingMenu.classList.add("hidden")
 
     if (goBackToWhat == "session") {
         session = ""
@@ -69,50 +210,13 @@ function goBack(goBackToWhat) {
         subject = ""
         olOrAl = ""
         subjectSelectionMenu.classList.remove("hidden");
+    } else if (goBackToWhat == "variant") {
+        variantSelectionMenu.classList.remove("hidden");
     }
 }
 
-const variantSelections = document.getElementById("variant-selections");
-
-function createVariantsList(subject, year, session, olOrAlID) {
-    variantSelections.innerHTML = ""
-
-    if (olOrAlID == "ol") {
-        for (let i = 0; i < 3; i++) {
-            if (olSubjects[subject][year][session][i] != null) {
-                let createAVariant = `
-                <div class="card" id="${i + 1}" onclick="variantSession(${i + 1})">
-                    <div class="img-container">
-                        <img src="./media/images/Random/${Math.floor(Math.random() * 7) + 1}.jpg">
-                    </div>
-    
-                    <h2>${i + 1}</h2>
-                </div>`
-
-                variantSelections.innerHTML += createAVariant;
-            }
-        }
-    } else if (olOrAlID == "al") {
-        for (let i = 0; i < 3; i++) {
-            if (alSubjects[subject][year][session][i] != null) {
-                let createAVariant = `
-                <div class="card" id="${i + 1}" onclick="variantSession(${i + 1})">
-                    <div class="img-container">
-                        <img src="./media/images/Random/${Math.floor(Math.random() * 7) + 1}.jpg">
-                    </div>
-    
-                    <h2>${i + 1}</h2>
-                </div>`
-
-                variantSelections.innerHTML += createAVariant;
-            }
-        }
-
-    }
-}
-
-function checkIfThisExamExist(subject, year, session, variant, olOrAlID) {
-    if (olOrAlID == "ol") {
+function checkIfThisExamExist(subject, year, session, variant, olOrAlId) {
+    if (olOrAlId == "ol") {
         if (olSubjects[subject][year][session][variant - 1] == null) {
             return
         } else {
@@ -123,7 +227,7 @@ function checkIfThisExamExist(subject, year, session, variant, olOrAlID) {
 
             createAnswerSheet();
         }
-    } else if (olOrAlID == "al") {
+    } else if (olOrAlId == "al") {
         if (alSubjects[subject][year][session][variant - 1] == null) {
             return
         } else {
@@ -137,25 +241,18 @@ function checkIfThisExamExist(subject, year, session, variant, olOrAlID) {
     }
 }
 
-let numberOfQuestions = 0;
-
-function changeTheNumberOfQuestions(subject, year, session, variant, olOrAlID) {
-    if (olOrAlID == "ol") {
+function changeTheNumberOfQuestions(subject, year, session, variant, olOrAlId) {
+    if (olOrAlId == "ol") {
         numberOfQuestions = olSubjects[subject][year][session][variant - 1].length;
-    } else if (olOrAlID == "al") {
+    } else if (olOrAlId == "al") {
         numberOfQuestions = alSubjects[subject][year][session][variant - 1].length;
     }
-
-    console.log(numberOfQuestions);
-
     answerSheet.style.gridTemplateRows = `repeat(${numberOfQuestions}, 1fr)`;
 }
 
-let myAnswers = {
-    1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "", 9: "", 10: "", 11: "", 12: "", 13: "", 14: "", 15: "", 16: "", 17: "", 18: "", 19: "", 20: "", 21: "", 22: "", 23: "", 24: "", 25: "", 26: "", 27: "", 28: "", 29: "", 30: "", 31: "", 32: "", 33: "", 34: "", 35: "", 36: "", 37: "", 38: "", 39: "", 40: ""
-}
-
 function createAnswerSheet() {
+    answerSheet.innerHTML = "";
+
     for (let i = 0; i < numberOfQuestions; i++) {
         const createAQuestion = `<h1 class="question-number" id="question-number-${i + 1}">${i + 1}</h1>
 
@@ -168,6 +265,7 @@ function createAnswerSheet() {
         <h1 class="option hasHover" id="question-${i + 1}-option-d" onclick="chooseAnOption('d', '${i + 1}')">D</h1>`
 
         answerSheet.innerHTML += createAQuestion;
+        resultCounter.textContent = `0 / ${numberOfQuestions}`;
     }
 }
 
@@ -209,16 +307,11 @@ function submitButton() {
     checkResult(answersString.toUpperCase());
 }
 
-const resultCounter = document.getElementById("result-counter");
-const resultSection = document.getElementById("result-section");
-
 function checkResult(answer) {
     let countCorrectAnswers = 0;
     let userAnswer = answer.split("", numberOfQuestions);
     let markScheme = olOrAl == "ol" ? olSubjects[subject][year][session][variant - 1].split("", numberOfQuestions) : alSubjects[subject][year][session][variant - 1].split("", numberOfQuestions);
     let answerString = answerTextBox.value.toUpperCase().split("", numberOfQuestions);
-
-    console.log(answerString);
 
     if (isAnswerCheckBoxChecked == false) {
         for (let i = 0; i < numberOfQuestions; i++) {
@@ -305,13 +398,6 @@ function discountedOption(questionNum) {
     questionNumber.classList.add("discounted-option");
 }
 
-const answerTextBox = document.getElementById("answer-text-box");
-const answerCheckBox = document.getElementById("scroll_toggle");
-
-const answerTextBoxMenu = document.getElementById("answer-text-box-menu");
-
-let isAnswerCheckBoxChecked = false;
-
 function switchBoxes() {
     if (isAnswerCheckBoxChecked) {
         isAnswerCheckBoxChecked = false;
@@ -324,8 +410,27 @@ function switchBoxes() {
     }
 }
 
-// Phone Hamburger menu behavior
+function changePath(olOrAlId = "", subject = "", year = "", session = "", variant = "") {
+    const yearPath = document.getElementById("year-path");
+    const sessionPath = document.getElementById("session-path");
+    const variantPath = document.getElementById("variant-path");
+    const solvingPath = document.getElementById("solving-path");
 
+    if (variant != "") {
+        solvingPath.textContent = `${olOrAlId.toUpperCase()} ${subject} > ${year} > ${session == "m" ? "February - March" : session == "s" ? "May - June" : "October - November"
+            } > v${variant}`;
+
+    } else if (session != "") {
+        variantPath.textContent = `${olOrAlId.toUpperCase()} ${subject} > ${year} > ${session == "m" ? "February - March" : session == "s" ? "May - June" : "October - November"
+            }`;
+    } else if (year != "") {
+        sessionPath.textContent = `${olOrAlId.toUpperCase()} ${subject} > ${year}`;
+    } else if (subject != "") {
+        yearPath.textContent = `${olOrAlId.toUpperCase()} ${subject}`;
+    }
+}
+
+// Phone Hamburger menu behavior
 const hamburgerIcon = document.getElementById("hamburger-icon ");
 const headerBannerContent = document.getElementById("header-banner-Content");
 
@@ -347,6 +452,16 @@ function openHamburgerMenu() {
         headerBannerContent.style.animation = "openMenu 100ms ease-in-out forwards";
     }
 }
+
+// Random imgs 
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+};
+
 
 // Removes all the hover effects on touch devices
 function watchForHover() {
